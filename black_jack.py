@@ -24,7 +24,7 @@ def ace_hand(player_hand, player_hand1):
     
     '''
     print('Either player_hand or player_hand1 is an ace.')
-    if player_hand <5 and player_hand1<5 :
+    if player_hand <8 and player_hand1<8 :
         #That means both cards are aces.
         count = 2
         count_11 = 12
@@ -57,6 +57,7 @@ def hit(count, balance=0,bet=0, count_11=0):
         balance -= bet
         status = False 
         print('busted')
+        shuffle()
         
         
     
@@ -74,8 +75,8 @@ def split():
 def busted():
     pass
     
-def winner():
-    pass
+def winner(player='player'):
+    print('Player won')
     
 def player():
     pass

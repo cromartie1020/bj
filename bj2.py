@@ -1,12 +1,10 @@
-from black_jack import ace_hand, choose_card, shuffle, hit
+from black_jack import ace_hand, choose_card, shuffle,hit, winner
 
 count=0
 count_11 = 0    
 dealer_count=0
 dealer_count11=0
-balance = 100.00
-bet=5
-
+toggle = True
     
 def deal():
     '''
@@ -38,27 +36,41 @@ s    has to give him/her the option to hit, double down, stay, split, or
     if dealer_hand1>9:
         dealer_hand1=10
     if dealer_hand ==1 or dealer_hand1 ==1: # This means both dealer cards are aces. 
-        
         dealer_count, dealer_count11,dealer_hand,  dealer_hand1 =ace_hand(dealer_hand, dealer_hand1)
     dealer_count=dealer_hand+dealer_hand1
     dealer_count = dealer_hand + dealer_hand1
     
     print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
+    if count_11 == 21 and dealer_count11 !=21:
+        # Player wins if dealer_count11 does not equal 21.
+        winner()
     # The two player cards are the same.
     if player_hand == player_hand1:
         print('Hit','Split','Double Down','Stand')
-        selected_option=input('Input S for Split,H for Hit, D for Double Down, Z for Stay: ')
-        selected_option=selected_option.lower()
-        if selected_option=='h':
-            hit(count, balance, bet, count_11)
-        
-    # The player does not have 21 and the cards are of different values.    
-    elif count < 21:
-        print('Hit',',' ,' Double Down',',', ' Stand')
-        selected_option=input('Input,H for Hit, D for Double Down, S for Stay: ')
-        selected_option=selected_option.lower()
-        if selected_option=='h':
-            hit(count, balance, bet, count_11)
+         
+    # The player does not have 21 and the cards are of different values.
+    toggle=True
+    while toggle:
+        selected=input("'Hit: H',',' ,' Double Down: D',',', ' Stand: S'")
+        selected.lower()
+        if selected.lower()=='s':
+            print('Player Count: ',count)
+            toggle=False
+        if selected=='h' and count < 21:
+            count=hit(count,100,10,count_11)
+            print(count)   # For some reason the count does not print
+            if count == 21:
+                winner('player')
+            if count >21:
+                print(busted)
+                
+    #-----------------------Dealer Hand----------------------------------------
+    '''
+    Dealer must hit when dealer_count is 16 or less. Dealer must stay if total
+    is 17 or greater. If dealer_hand1 is an ace then the player is offer insur-
+    ance. If dealer has 21 on first two cards and player does not have 21 on first
+    two cards player looses and bet is deducted from total.
+    ''' 
     return player_hand, dealer_hand, player_hand1, dealer_hand1
     
 deal()
