@@ -117,6 +117,7 @@ def choose_card():
         card_type='Club'    
     
     return card_number, card_type, temp
+
 def dealer_hit(count, count11,dealer_count,dealer_count11):
     global card
     toggle= False
@@ -128,7 +129,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
     #    if count < dealer_count or count < dealer_count11:
     #        print('Dealer lost') 
     print('dealer_count before < 17 ',dealer_count)
-    if count < dealer_count and dealer_count > 16:
+    if count < dealer_count and dealer_count < 22 and dealer_count >16:
         print ('Dealer Wins')
         toggle= True
     while dealer_count<17 and toggle == False:
@@ -145,9 +146,10 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         selected =input( 'Do you wish to play again y/n: ')
         selected = selected.lower()
         if selected == 'y':
-            quit()
+            toggle = True
+            return selected
         if selected == 'n':
-            break
+            quit()
         if dealer_count == count:
             print(Push)
         if dealer_count > count:
@@ -155,3 +157,5 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             print(temp)
         if dealer_count < count and dealer_count < 21:
             print ('Player Wins', temp)
+
+
