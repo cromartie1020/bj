@@ -57,11 +57,13 @@ def hit(count, balance=0,bet=0, count_11=0):
         balance -= bet
         status = False 
         print('busted')
-        shuffle()
         
         
     
     return count
+#def dealer_hit(count, count11,dealer_count,dealer_count11):
+#    print(temp)    
+
     
 def double_down(count,balance=0,bet=0,count_11=0):
     pass
@@ -81,18 +83,15 @@ def winner(player='player'):
 def player():
     pass
 
-def dealer():        
-    pass
-
+#def dealer(count,count_11,dealer_count,dealer_count11,  balance,bet=0):
+    
+        
+    
 def dealer_hand_count():
     pass
     
 def player_hand_count():
     pass           
-
-
-
-        
 
 
 
@@ -105,7 +104,9 @@ def choose_card():
     '''
     selected_card=temp.pop()
     card_number = selected_card//4
+    print('card_number: ',card_number)
     card_type= selected_card - 4*card_number
+    print('New card selected and the new length of temp: ',len(temp)) 
     if card_type==0:
         card_type='Heart'
     elif card_type==1:
@@ -115,7 +116,42 @@ def choose_card():
     elif card_type==3:
         card_type='Club'    
     
-             
-            
-        
     return card_number, card_type, temp
+def dealer_hit(count, count11,dealer_count,dealer_count11):
+    global card
+    toggle= False
+    print(temp)
+    print('Dealer hand called.')
+    #if dealer_count < 17 and dealer_count > 0 and dealer_count11 <17:
+    #    hit(count, balance=0,bet=0, dealer_count11 )
+    #elif dealer_count < 22:
+    #    if count < dealer_count or count < dealer_count11:
+    #        print('Dealer lost') 
+    print('dealer_count before < 17 ',dealer_count)
+    if count < dealer_count and dealer_count > 16:
+        print ('Dealer Wins')
+        toggle= True
+    while dealer_count<17 and toggle == False:
+        print('dealer_count',dealer_count)
+        card   =choose_card()
+        card = int(card[0])
+        
+        print('card',type(card),'dealer_count',type(dealer_count))
+        dealer_count += card
+        dealer_hit(count,count11,dealer_count,dealer_count11)
+        print(dealer_count, count, count11,dealer_count11 )
+        if dealer_count > 21:
+            print('dealer_count dealer is busted.',dealer_count)
+        selected =input( 'Do you wish to play again y/n: ')
+        selected = selected.lower()
+        if selected == 'y':
+            quit()
+        if selected == 'n':
+            break
+        if dealer_count == count:
+            print(Push)
+        if dealer_count > count:
+            print ('Dealer Wins')
+            print(temp)
+        if dealer_count < count and dealer_count < 21:
+            print ('Player Wins', temp)
