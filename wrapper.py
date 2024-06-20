@@ -8,14 +8,14 @@ def make_timer(func):
         print('Time: ',t2-t1)
         return ret_val
     return wrapper
-@make_timer
+
 def count_num(n):
     for i in range(n):
         for j in range(1000):
             #print(j)
             pass
 
-#count_num=make_timer(count_num)
+count_num=make_timer(count_num)
 count_num(33000)
 
 

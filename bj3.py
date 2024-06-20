@@ -66,7 +66,8 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         print(dealer_count, count, count11,dealer_count11 )
         if dealer_count > 21:
             print('dealer_count dealer is busted the dealer has. ',dealer_count)
-        selected =input( 'Do you wish to play again y/n: ').lower()
+        selected =input( 'Do you wish to play again y/n: ')
+        selected = selected.lower()
         if selected == 'y':
             deal()
         else:
@@ -160,6 +161,7 @@ def busted():
     
 def winner(player='player'):
     print('Player won')
+    deal()
     
 def player():
     pass
@@ -199,13 +201,12 @@ def deal():
     if dealer_hand ==1 or dealer_hand1 ==1: # This means both dealer cards are aces. 
         dealer_count, dealer_count11,dealer_hand,  dealer_hand1 =ace_hand(dealer_hand, dealer_hand1)
     dealer_count =dealer_hand+ dealer_hand1
-    #dealer_count = dealer_hand + dealer_hand1
+    
     
     print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
     if count_11 == 21 and dealer_count11 !=21:
         # Player wins if dealer_count11 does not equal 21.
         winner()
-        print('winner function called')
         selected = input ('Do  you wish to play again? Y/n')
         selected = selected.lower
         if selected == 'n':
