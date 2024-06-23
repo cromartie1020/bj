@@ -1,4 +1,5 @@
 from black_jack import ace_hand, choose_card, shuffle, winner,busted,temp,hit,dealer_hit
+from card import card_suit as cs
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
     
@@ -93,10 +94,12 @@ s    has to give him/her the option to hit, double down, stay, split, or
                 # Game is over and player lost.
                 
                 print('busted')
+                print('Dealer wins')
                 play=input('Do you wish to play another hand y/n: ')
                 play = play.lower()
                 if play=='n':
                     toggle=False
+                    quit()
                 else:    
                     deal()
                   

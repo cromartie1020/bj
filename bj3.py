@@ -1,5 +1,7 @@
 from random import choice
-#from black_jack import ace_hand, choose_card, shuffle, winner,busted,temp,hit,dealer_hit
+from card import card_suit as cs
+
+import os
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
     
@@ -11,6 +13,8 @@ bet=1
 balance=100
 global toggle
 toggle = True
+global card_type
+global x
 def choose_card():
     '''
     Selected card in order is heart, spade, diamond, club.
@@ -18,36 +22,55 @@ def choose_card():
     the number card. If card_type == 0 then it is a heart.
     If card_type == 1 then it is a spade etc... 
     '''
+    print(temp)
     selected_card=temp.pop()
-    card_number = selected_card//4
-    print('card_number: ',card_number)
-    card_type= selected_card - 4*card_number
-    print('New card selected and the new length of temp: ',len(temp)) 
-    if card_type==0:
-        card_type='Heart'
-    elif card_type==1:
-        card_type='Spade'
-    elif card_type==2:
-        card_type='Diamond'
-    elif card_type==3:
-        card_type='Club'    
+    print('selected_card: ', selected_card)
+    #card_number = selected_card//4
     
-    return card_number, card_type, temp
+    #card_type= selected_card - 4*card_number
+    card_type=cs[selected_card]
+    card_number=int(selected_card/4) + int(1)
+    print('selected_card: ', selected_card,'card_number: ',card_number, 'card_type: ', card_type)
+    #print(selected_card,card_type,card_number)
+    #print('New card selected and the new length of temp: ',len(temp))
+    
+    return card_number, card_type,temp
 def dealer_hit(count, count11,dealer_count,dealer_count11):
     global card
     toggle= False
-    print(temp)
-    print('Dealer hand called.')
+    #print(temp)
+    
+     
     #if dealer_count < 17 and dealer_count > 0 and dealer_count11 <17:
     #    hit(count, balance=0,bet=0, dealer_count11 )
     #elif dealer_count < 22:
     #    if count < dealer_count or count < dealer_count11:
     #        print('Dealer lost') 
-    print('dealer_count before < 17 ',dealer_count)
-    if count < dealer_count and dealer_count > 16:
-        print ('Dealer Wins dealer has: ', dealer_count  )
-        
-           
+    #print('dealer_count before < 17 ',dealer_count)
+    if  dealer_count > 16 and dealer_count < 22:
+        #print('Player has:\t   ', count)
+        #print ('Dealer Wins:\t ', dealer_count  )
+        if dealer_count > 21:
+            os.system('clear')
+            print('Player has:\t ', count)
+            print('Dealer has:\t ', dealer_count)
+            print('Player wins, Dealer is busted.')   
+        if dealer_count < 22:
+            os.system('clear')
+            #print('Player has:\t ', count)
+            #print('Dealer has:\t ', dealer_count)
+            if dealer_count > count:  
+                print('Player has:\t ', count)
+                print('Dealer has:\t ', dealer_count)
+                print('Dealer Wins')
+            if dealer_count <  count:  
+                print('Player has:\t ', count)
+                print('Dealer has:\t ', dealer_count)
+                print('Player Wins')
+            if dealer_count == count:
+                print('Player has:\t ', count)
+                print('Dealer has:\t ', dealer_count)
+                print('Push')    
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
             deal()
@@ -60,14 +83,17 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         card   =choose_card()
         card = int(card[0])
         
-        print('card',type(card),'dealer_count',type(dealer_count))
+        #print('card',type(card),'dealer_count',type(dealer_count))
         dealer_count += card
         dealer_hit(count,count11,dealer_count,dealer_count11)
-        print(dealer_count, count, count11,dealer_count11 )
+        #print(dealer_count, count, count11,dealer_count11 )
         if dealer_count > 21:
-            print('dealer_count dealer is busted the dealer has. ',dealer_count)
+            print('Player has:\t ', count)
+            print('dealer has:\t ',dealer_count)
+            print('Dealer is busted.')
         selected =input( 'Do you wish to play again y/n: ')
         selected = selected.lower()
+        os.system('clear')
         if selected == 'y':
             deal()
         else:
@@ -86,8 +112,9 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             print ('Player Wins', temp)
 
 def shuffle():
+    os.system('clear')
     temp=[]
-    cards = [card for card in range(4,56)]
+    cards = [card for card in range(1,53)]
     while len(cards)!= 0:
         selected=choice(cards)
         temp.append(selected)
@@ -128,9 +155,9 @@ def ace_hand(player_hand, player_hand1):
     
 def hit(count, balance=0,bet=0, count_11=0):
     status = True
-    new_card = temp.pop()
+    new_card  = temp.pop()
     
-    new_card = new_card // 4
+    #new_card = new_card 
     if new_card >10:
         new_card=10
     count +=  new_card
@@ -175,6 +202,7 @@ def deal():
     has to give him/her the option to hit, double down, stay, split, or
     if he/she has blackjack.
     '''
+    # ----------------The first four cards------------------
     deposit=100
     count_11=0
     dealer_count11=0
@@ -182,12 +210,13 @@ def deal():
     dealer_hand, card_type, temp = choose_card()
     player_hand1, card_type, temp = choose_card()
     dealer_hand1, card_type, temp = choose_card()
+    #-----------------End of first four cards--------------- 
     
     if player_hand > 9:
         player_hand = 10
     if player_hand1>9:
         player_hand1=10
-    print('player_hand :',player_hand,'player_hand1:', player_hand1)
+    #print('player_hand :',player_hand,'player_hand1:', player_hand1)
     if player_hand ==1 or player_hand1==1:   #This means both cards are aces.
         count,count_11, player_hand,  player_hand1 = ace_hand(player_hand, player_hand1)
         print('count: ',count, 'count_11: ',count_11,'player_hand: ',player_hand,'player_hand1: ', player_hand1)
@@ -201,9 +230,12 @@ def deal():
     if dealer_hand ==1 or dealer_hand1 ==1: # This means both dealer cards are aces. 
         dealer_count, dealer_count11,dealer_hand,  dealer_hand1 =ace_hand(dealer_hand, dealer_hand1)
     dealer_count =dealer_hand+ dealer_hand1
+    print('Player first card:\t ', player_hand)
+    print('Dealer first card:\t ', dealer_hand)
+    print('Player second card:\t ', player_hand1)
+    print('Dealer second card:\t ', dealer_hand1)
     
-    
-    print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
+    #print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
     if count_11 == 21 and dealer_count11 !=21:
         # Player wins if dealer_count11 does not equal 21.
         winner()
@@ -237,7 +269,9 @@ def deal():
                 # Game is over and player lost.
                 
                 print('busted')
+                print ("You've Lost.") 
                 play=input('Do you wish to play another hand y/n: ')
+                os.system('clear')
                 play = play.lower()
                 if play=='n':
                     toggle=False
@@ -254,5 +288,7 @@ def deal():
     ''' 
     return player_hand, dealer_hand, player_hand1, dealer_hand1
 
-while toggle:
+while toggle 
+    
     deal()
+
