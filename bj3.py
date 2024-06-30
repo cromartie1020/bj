@@ -15,6 +15,18 @@ global toggle
 toggle = True
 global card_type
 global x
+global selected_card
+def shuffle():
+    os.system('clear')
+    temp=[]
+    cards = [card for card in range(1,53)]
+    while len(cards)!= 0:
+        selected=choice(cards)
+        temp.append(selected)
+        cards.remove(selected)
+    print('After shuffle: ',temp, 'length of temp: ',len(temp ))
+    return temp
+temp=shuffle()
 def choose_card():
     '''
     Selected card in order is heart, spade, diamond, club.
@@ -23,8 +35,9 @@ def choose_card():
     If card_type == 1 then it is a spade etc... 
     '''
     print(temp)
+       
     selected_card=temp.pop()
-    print('selected_card: ', selected_card)
+    
     #card_number = selected_card//4
     
     #card_type= selected_card - 4*card_number
@@ -38,15 +51,7 @@ def choose_card():
 def dealer_hit(count, count11,dealer_count,dealer_count11):
     global card
     toggle= False
-    #print(temp)
     
-     
-    #if dealer_count < 17 and dealer_count > 0 and dealer_count11 <17:
-    #    hit(count, balance=0,bet=0, dealer_count11 )
-    #elif dealer_count < 22:
-    #    if count < dealer_count or count < dealer_count11:
-    #        print('Dealer lost') 
-    #print('dealer_count before < 17 ',dealer_count)
     if  dealer_count > 16 and dealer_count < 22:
         #print('Player has:\t   ', count)
         #print ('Dealer Wins:\t ', dealer_count  )
@@ -73,6 +78,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                 print('Push')    
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
+    
             deal()
             return selected    
         else:
@@ -82,6 +88,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         print('Dealer has: ',dealer_count)
         card   =choose_card()
         card = int(card[0])
+        print('Dealer hit with:\t ', card)
         
         #print('card',type(card),'dealer_count',type(dealer_count))
         dealer_count += card
@@ -111,17 +118,8 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         if dealer_count < count and dealer_count < 21:
             print ('Player Wins', temp)
 
-def shuffle():
-    os.system('clear')
-    temp=[]
-    cards = [card for card in range(1,53)]
-    while len(cards)!= 0:
-        selected=choice(cards)
-        temp.append(selected)
-        cards.remove(selected)
-    print('After shuffle: ',temp, 'length of temp: ',len(temp ))
-    return temp
-temp=shuffle()
+
+
 def ace_hand(player_hand, player_hand1):
     count = 0
     count_11=0
@@ -155,6 +153,8 @@ def ace_hand(player_hand, player_hand1):
     
 def hit(count, balance=0,bet=0, count_11=0):
     status = True
+    if len(temp) < 25:
+        shuffle()
     new_card  = temp.pop()
     
     #new_card = new_card 
@@ -243,8 +243,7 @@ def deal():
         selected = selected.lower
         if selected == 'n':
             quit()
-        else:
-            deal()
+        
     # The two player cards are the same.
     if player_hand == player_hand1:
         print('Hit','Split','Double Down','Stand')
@@ -275,7 +274,8 @@ def deal():
                 play = play.lower()
                 if play=='n':
                     toggle=False
-                else:    
+          
+                else:     
                     deal()
                   
                 
@@ -288,7 +288,7 @@ def deal():
     ''' 
     return player_hand, dealer_hand, player_hand1, dealer_hand1
 
-while toggle 
+while toggle: 
     
     deal()
 
