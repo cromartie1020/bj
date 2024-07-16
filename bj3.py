@@ -38,15 +38,12 @@ def choose_card():
        
     selected_card=temp.pop()
     
-    #card_number = selected_card//4
     
-    #card_type= selected_card - 4*card_number
     
     card_type=cs[selected_card]
     card_number=int(selected_card/4) + int(1)
     print('selected_card: ', selected_card,'card_number: ',card_number, 'card_type: ', card_type)
-    #print(selected_card,card_type,card_number)
-    #print('New card selected and the new length of temp: ',len(temp))
+    
     
     return card_number, card_type,temp
 def dealer_hit(count, count11,dealer_count,dealer_count11):
