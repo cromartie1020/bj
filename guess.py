@@ -1,11 +1,16 @@
-from random import randint
-print("Please think of a number between 0 and 100")
+#from random import randint
+number = int(input("Please think of a number between 0 and 100! "))
   
-number = randint(0,100)
+#number = randint(0,100)
 selected = 'h'
 high = 100
 low  = 0
-
+def choice(name):
+    if name == 'l' or name == 'h' or name == 'c':
+        return name
+    else:
+         name=input("Enter 'h' to indicate the guess is too high. Enter 'l' to indicate the guess is too low. Enter 'c' to indicate I guessed correctly. " )
+         choice(name) 
 while selected != 'c':
     if number > (int((high + low)/2)):
         low = int((high + low)/2)
@@ -25,7 +30,6 @@ while selected != 'c':
         print("Enter 'h' to indicate the guess is too high. Enter 'l' to indicate the guess is too low. Enter 'c' to indicate I guessed correctly. ", 'c')
         print('Your number is ' + str(guess) + '.')
         
-
 
               
     
