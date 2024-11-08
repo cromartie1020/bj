@@ -13,7 +13,7 @@ bet=1
 balance=100
 global toggle
 toggle = True
-global card_type
+global card_type #Is the card a heart, spade, club, or diamond.
 global x
 global selected_card
 def shuffle():
@@ -36,11 +36,11 @@ def choose_card():
     '''
     print(temp)
        
-    selected_card=temp.pop()
+    selected_card=temp.pop(). # Take a card from the top of the deck.
     
     
     
-    card_type=cs[selected_card]
+    card_type=cs[selected_card] # Lets determine the suit of the card.
     card_number=int(selected_card/4) + int(1)
     print('selected_card: ', selected_card,'card_number: ',card_number, 'card_type: ', card_type)
     
