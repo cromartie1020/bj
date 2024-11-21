@@ -11,14 +11,14 @@ dealer_count=0
 dealer_count11=0
 bet=1
 balance=100
-global toggle
 toggle = True
-global card_type #Is the card a heart, spade, club, or diamond.
-global x
-global selected_card
+card_type = 0 #Is the card a heart, spade, club, or diamond.
+temp = []
+x = 0
+selected_card = 0
 def shuffle():
     os.system('clear')
-    temp=[]
+    print('A new shuffle.')
     cards = [card for card in range(1,53)]
     while len(cards)!= 0:
         selected=choice(cards)
@@ -35,10 +35,12 @@ def choose_card():
     If card_type == 1 then it is a spade etc... 
     '''
     print(temp)
-       
-    selected_card=temp.pop(). # Take a card from the top of the deck.
-    
-    
+    # Check if list less than 25 then reshuffle deck. Lets check prior to getting next card.
+        
+    selected_card=temp.pop() # Take a card from the top of the deck.
+    if len(temp)<25: 
+        
+        shuffle()
     
     card_type=cs[selected_card] # Lets determine the suit of the card.
     card_number=int(selected_card/4) + int(1)
@@ -49,6 +51,8 @@ def choose_card():
 def dealer_hit(count, count11,dealer_count,dealer_count11):
     global card
     toggle= False
+    global status
+    status = False
     
     if  dealer_count > 16 and dealer_count < 22:
         #print('Player has:\t   ', count)
@@ -58,6 +62,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             print('Player has:\t ', count)
             print('Dealer has:\t ', dealer_count)
             print('Player wins, Dealer is busted.')   
+            status = True
         if dealer_count < 22:
             os.system('clear')
             #print('Player has:\t ', count)
@@ -66,14 +71,17 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                 print('Player has:\t ', count)
                 print('Dealer has:\t ', dealer_count)
                 print('Dealer Wins')
+                status = True
             if dealer_count <  count:  
                 print('Player has:\t ', count)
                 print('Dealer has:\t ', dealer_count)
                 print('Player Wins')
+                status = True
             if dealer_count == count:
                 print('Player has:\t ', count)
                 print('Dealer has:\t ', dealer_count)
-                print('Push')    
+                print('Push')
+                status = True    
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
     
@@ -115,6 +123,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             print(temp)
         if dealer_count < count and dealer_count < 21:
             print ('Player Wins', temp)
+
 
 
 
