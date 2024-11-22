@@ -1,6 +1,7 @@
 from random import choice
 from card import card_suit as cs
 from termcolor import colored
+from PIL import Image, ImageDraw, ImageFont
 
 
 import os
