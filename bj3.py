@@ -1,7 +1,7 @@
 from random import choice
 from card import card_suit as cs
-from termcolor import colored
-from PIL import Image, ImageDraw, ImageFont
+#from termcolor import colored
+#from PIL import Image, ImageDraw, ImageFont
 
 
 import os
@@ -33,15 +33,15 @@ def selected():
 '''
 def shuffle():
     os.system('clear')
-    text = colored('Deck has been shuffled.','red', attrs=['reverse', 'blink'])
-    print(text)
+    #text = colored('Deck has been shuffled.','red', attrs=['reverse', 'blink'])
+    #print(text)
     
     cards = [card for card in range(1,53)]
     while len(cards)!= 0:
         selected=choice(cards)    # Selects a random card.
         temp.append(selected)     # Append that card to temp. 
         cards.remove(selected)    # Now remove the selected card from cards. 
-    print('After shuffle: ',temp, 'length of temp: ',len(temp ))
+    #print('After shuffle: ',temp, 'length of temp: ',len(temp ))
     return temp
 temp=shuffle()
 def choose_card():
@@ -51,12 +51,12 @@ def choose_card():
     the number card. If card_type == 0 then it is a heart.
     If card_type == 1 then it is a spade etc... 
     '''
-    print(temp)
+    #print(temp)
     # Check if list less than 25 then reshuffle deck. Lets check prior to getting next card.
         
     selected_card=temp.pop() # Take a card from the top of the deck.
     if len(temp)<25: 
-        print('A new shuffle.')
+        #print('A new shuffle.')
         temp.clear()              # Emptys the temp list. 
         shuffle()
     
