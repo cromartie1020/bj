@@ -2,15 +2,16 @@ from random import choice
 from card import card_suit as cs
 #from termcolor import colored
 #from PIL import Image, ImageDraw, ImageFont
-
+play_count=0
 
 import os
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
-    
+# After the 7'th hand resheffle the deck.
+hand_count = 1     
 count=0
 count_11 = 0    
-dealer_count=0
+#dealer_count=0
 dealer_count11=0
 bet=1
 balance=100
@@ -102,6 +103,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
             deal()
+            hand_count+=1
             return selected    
         else:
             quit()   
@@ -125,12 +127,14 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         selected = selected.lower()
         os.system('clear')
         if selected == 'y':
+            
             deal()
         else:
             toggle = True 
         selected = selected.lower()
         if selected == 'y':
-            quit()
+            #dealer_count+=1
+            deal()
         if selected == 'n':
             quit()
         if dealer_count == count:
@@ -212,6 +216,7 @@ def busted():
     
 def winner(player='player'):
     print('Player won')
+    #dealer_count+=1
     deal()
     
 def player():
@@ -313,6 +318,13 @@ def deal():
     return player_hand, dealer_hand, player_hand1, dealer_hand1
 
 while toggle: 
-    
+    #if dealer_count==7:
+    #    print('dealer_count: ', dealer_count)
+    play_count += 1
+    print('play_count: ',play_count)
+    if play_count==7:
+        print('play_count: ',play_count)
+        shuffle()
+
     deal()
 
