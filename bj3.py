@@ -20,18 +20,6 @@ card_type = 0 #Is the card a heart, spade, club, or diamond.
 temp = []
 x = 0
 selected_card = 0
-'''
-def selected():
-    select=input('Do you wish to play again (y/n)?')
-    while (select == 'y') or (select == 'n'):
-        if select.lower() == 'y':
-            deal()
-        elif select.lower()=='n':
-            quit()
-        else:
-            select()             
-
-'''
 def shuffle():
     os.system('clear')
     #text = colored('Deck has been shuffled.','red', attrs=['reverse', 'blink'])
@@ -259,10 +247,11 @@ def deal():
     if dealer_hand ==1 or dealer_hand1 ==1: # This means both dealer cards are aces. 
         dealer_count, dealer_count11,dealer_hand,  dealer_hand1 =ace_hand(dealer_hand, dealer_hand1)
     dealer_count =dealer_hand+ dealer_hand1
-    print('Player first card:\t ', player_hand)
-    print('Dealer first card:\t ', dealer_hand)
-    print('Player second card:\t ', player_hand1)
-    print('Dealer second card:\t ', dealer_hand1)
+
+    print('Player first card:  ', player_hand, end='')
+    print('\tDealer first card:  ', dealer_hand)
+    print('Player second card: ', player_hand1, end='')
+    print('\tDealer second card: ', dealer_hand1)
     
     #print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
     if count_11 == 21 and dealer_count11 !=21:
