@@ -1,4 +1,4 @@
-#!/home/haynes245/django_projects/bj/env/bin/python3
+#!/Users/haynescromartie/django_projects/bj/env/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys
