@@ -90,9 +90,9 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                  
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
-            os.sys('clear')
+            os.system('clear')
             deal()
-            hand_count+=1
+            #hand_count+=1
             return selected    
         else:
             quit()   
@@ -148,7 +148,7 @@ def ace_hand(player_hand, player_hand1):
     count_11 is when ace = 11 and count is when ace =1.
     
     '''
-    print('Either player_hand or player_hand1 is an ace.')
+    #print('Either player_hand or player_hand1 is an ace.')
     if player_hand <8 and player_hand1<8 :
         #That means both cards are aces.
         count = 2
@@ -205,8 +205,11 @@ def busted():
     
 def winner(player='player'):
     print('Player won')
-    #dealer_count+=1
-    deal()
+    selected= input('Play again y/n.')
+    if selected.lower()=='y':
+        deal()
+    else:
+        sys.exit()    
     
 def player():
     pass
@@ -237,7 +240,7 @@ def deal():
     #print('player_hand :',player_hand,'player_hand1:', player_hand1)
     if player_hand ==1 or player_hand1==1:   #This means both cards are aces.
         count,count_11, player_hand,  player_hand1 = ace_hand(player_hand, player_hand1)
-        print('count: ',count, 'count_11: ',count_11,'player_hand: ',player_hand,'player_hand1: ', player_hand1)
+        #print('count: ',count, 'count_11: ',count_11,'player_hand: ',player_hand,'player_hand1: ', player_hand1)
     else:
         count= player_hand+player_hand1
     #-----------------------Dealer hand---------------------------------------------    
@@ -250,9 +253,9 @@ def deal():
     dealer_count =dealer_hand+ dealer_hand1
 
     print('Player first card:  ', player_hand, end='')
-    print('\tDealer first card:  ', dealer_hand)
+    print('\t\tDealer first card:  ', dealer_hand)
     print('Player second card: ', player_hand1, end='')
-    print('\tDealer second card: ', dealer_hand1)
+    print('\t\tDealer second card: ', dealer_hand1)
     
     #print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
     if count_11 == 21 and dealer_count11 !=21:
@@ -312,10 +315,8 @@ while toggle:
     #if dealer_count==7:
     #    print('dealer_count: ', dealer_count)
     
-    play_count += 1
-    print('play_count: ',play_count)
+    
     if play_count==7:
-        print('play_count: ',play_count)
         shuffle()
 
     deal()
