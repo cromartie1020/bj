@@ -4,7 +4,7 @@ from card import card_suit as cs
 #from PIL import Image, ImageDraw, ImageFont
 play_count=0
 
-import os
+import os, sys
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
 # After the 7'th hand resheffle the deck.
@@ -51,7 +51,7 @@ def choose_card():
     
     card_type=cs[selected_card] # Lets determine the suit of the card.
     card_number=int(selected_card/4) + int(1)
-    print('selected_card: ', selected_card,'card_number: ',card_number, 'card_type: ', card_type)
+    #print('selected_card: ', selected_card,'card_number: ',card_number, 'card_type: ', card_type)
     
     
     return card_number, card_type,temp
@@ -90,6 +90,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                  
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
+            os.sys('clear')
             deal()
             hand_count+=1
             return selected    
@@ -113,9 +114,9 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
 
         selected =input( 'Do you wish to play again y/n: ')
         selected = selected.lower()
-        os.system('clear')
+        
         if selected == 'y':
-            
+            os.system('clear')  
             deal()
         else:
             toggle = True 
@@ -288,12 +289,13 @@ def deal():
                 print('busted')
                 print ("You've Lost.") 
                 play=input('Do you wish to play another hand y/n: ')
-                os.system('clear')
+                
                 play = play.lower()
                 if play=='n':
-                    toggle=False
-          
-                else:     
+                    #toggle=False
+                    sys.exit()
+                else:   
+                    os.system('clear')  
                     deal()
                   
                 
@@ -309,6 +311,7 @@ def deal():
 while toggle: 
     #if dealer_count==7:
     #    print('dealer_count: ', dealer_count)
+    
     play_count += 1
     print('play_count: ',play_count)
     if play_count==7:
