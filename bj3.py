@@ -1,17 +1,16 @@
 from random import choice
 from card import card_suit as cs
-#from termcolor import colored
-#from PIL import Image, ImageDraw, ImageFont
+from termcolor import colored
+from PIL import Image, ImageDraw, ImageFont
 play_count=0
 
 import os, sys
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
-# After the 7'th hand resheffle the deck.
-hand_count = 1     
+
 count=0
 count_11 = 0    
-#dealer_count=0
+dealer_count=0
 dealer_count11=0
 bet=1
 balance=100
@@ -22,15 +21,12 @@ x = 0
 selected_card = 0
 def shuffle():
     os.system('clear')
-    #text = colored('Deck has been shuffled.','red', attrs=['reverse', 'blink'])
-    #print(text)
     
     cards = [card for card in range(1,53)]
     while len(cards)!= 0:
         selected=choice(cards)    # Selects a random card.
         temp.append(selected)     # Append that card to temp. 
         cards.remove(selected)    # Now remove the selected card from cards. 
-    #print('After shuffle: ',temp, 'length of temp: ',len(temp ))
     return temp
 temp=shuffle()
 def choose_card():
@@ -40,8 +36,6 @@ def choose_card():
     the number card. If card_type == 0 then it is a heart.
     If card_type == 1 then it is a spade etc... 
     '''
-    #print(temp)
-    # Check if list less than 25 then reshuffle deck. Lets check prior to getting next card.
         
     selected_card=temp.pop() # Take a card from the top of the deck.
     if len(temp)<25: 
@@ -51,7 +45,7 @@ def choose_card():
     
     card_type=cs[selected_card] # Lets determine the suit of the card.
     card_number=int(selected_card/4) + int(1)
-    #print('selected_card: ', selected_card,'card_number: ',card_number, 'card_type: ', card_type)
+    
     
     
     return card_number, card_type,temp
@@ -90,9 +84,9 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                  
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
-            os.system('clear')
+            os.sys('clear')
             deal()
-            #hand_count+=1
+            hand_count+=1
             return selected    
         else:
             quit()   
@@ -148,7 +142,7 @@ def ace_hand(player_hand, player_hand1):
     count_11 is when ace = 11 and count is when ace =1.
     
     '''
-    #print('Either player_hand or player_hand1 is an ace.')
+    print('Either player_hand or player_hand1 is an ace.')
     if player_hand <8 and player_hand1<8 :
         #That means both cards are aces.
         count = 2
@@ -205,11 +199,8 @@ def busted():
     
 def winner(player='player'):
     print('Player won')
-    selected= input('Play again y/n.')
-    if selected.lower()=='y':
-        deal()
-    else:
-        sys.exit()    
+    #dealer_count+=1
+    deal()
     
 def player():
     pass
@@ -240,7 +231,7 @@ def deal():
     #print('player_hand :',player_hand,'player_hand1:', player_hand1)
     if player_hand ==1 or player_hand1==1:   #This means both cards are aces.
         count,count_11, player_hand,  player_hand1 = ace_hand(player_hand, player_hand1)
-        #print('count: ',count, 'count_11: ',count_11,'player_hand: ',player_hand,'player_hand1: ', player_hand1)
+        print('count: ',count, 'count_11: ',count_11,'player_hand: ',player_hand,'player_hand1: ', player_hand1)
     else:
         count= player_hand+player_hand1
     #-----------------------Dealer hand---------------------------------------------    
@@ -253,9 +244,9 @@ def deal():
     dealer_count =dealer_hand+ dealer_hand1
 
     print('Player first card:  ', player_hand, end='')
-    print('\t\tDealer first card:  ', dealer_hand)
+    print('\tDealer first card:  ', dealer_hand)
     print('Player second card: ', player_hand1, end='')
-    print('\t\tDealer second card: ', dealer_hand1)
+    print('\tDealer second card: ', dealer_hand1)
     
     #print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
     if count_11 == 21 and dealer_count11 !=21:
@@ -315,8 +306,10 @@ while toggle:
     #if dealer_count==7:
     #    print('dealer_count: ', dealer_count)
     
-    
+    play_count += 1
+    print('play_count: ',play_count)
     if play_count==7:
+        print('play_count: ',play_count)
         shuffle()
 
     deal()
