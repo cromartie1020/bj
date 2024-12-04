@@ -6,7 +6,9 @@ import os, sys
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
 
-play_count=0
+#________________________________Global Variables_________________________________________________________
+
+play_count=0                                               # Deal 7 hands and then shuffle the deck. 
 count=0
 count_11 = 0    
 dealer_count=0
@@ -14,10 +16,11 @@ dealer_count11=0
 bet=1
 balance=100
 toggle = True
-card_type = 0 #Is the card a heart, spade, club, or diamond.
+card_type = 0                                              #Is the card a heart, spade, club, or diamond.
 temp = []
 x = 0
 selected_card = 0
+#______________________________End of Global Variables_____________________________________________________
 def shuffle():
     os.system('clear')
     
@@ -26,6 +29,9 @@ def shuffle():
         selected=choice(cards)    # Selects a random card.
         temp.append(selected)     # Append that card to temp. 
         cards.remove(selected)    # Now remove the selected card from cards. 
+    global play_count
+    play_count=0
+
     return temp
 temp=shuffle()
 def choose_card():
@@ -214,6 +220,12 @@ def deal():
     if he/she has blackjack.
     '''
     # ----------------The first four cards------------------
+    global play_count
+    play_count+=1
+    
+    if play_count==8:
+        
+        shuffle()
     deposit=100
     count_11=0
     dealer_count11=0
