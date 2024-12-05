@@ -243,9 +243,13 @@ def deal():
     dealer_count =dealer_hand+ dealer_hand1
 
     print('Player first card:  ', player_hand, end='')
-    print('\tDealer first card:  ', dealer_hand)
+    print('\t\t\tDealer first card:  ', dealer_hand)
     print('Player second card: ', player_hand1, end='')
-    print('\tDealer second card: ', dealer_hand1)
+    
+    print('\t\t\tDealer second card: ', dealer_hand1)
+    print('Player has:         ' , player_hand + player_hand1,end='')
+    print('\t\t\tDealer has:         ', dealer_hand + dealer_hand1)
+    
     
     #print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
     if count_11 == 21 and dealer_count11 !=21:
