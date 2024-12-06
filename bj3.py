@@ -7,15 +7,15 @@ with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
 
 play_count=0
-count=0
+count=0           # Total of the player's card in there hand.
 count_11 = 0    
-dealer_count=0
+dealer_count=0    # dealer_count is the total in the dealer's hand.
 dealer_count11=0
 bet=1
 balance=100
-toggle = True
-card_type = 0 #Is the card a heart, spade, club, or diamond.
-temp = []
+toggle = True # This determines if another hand is played.  
+card_type = 0 # Is the card a heart, spade, club, or diamond.
+temp = []     # This holds the card deck
 x = 0
 selected_card = 0
 def shuffle():
@@ -49,10 +49,14 @@ def choose_card():
     
     return card_number, card_type,temp
 def dealer_hit(count, count11,dealer_count,dealer_count11):
+    '''
+    Dealer hits if total is less than 16. If dealer_count is greater
+    than 22 than dealer loses.   
+    '''
     global card
     toggle= False
     global status
-    #status = False
+    
     
     if  dealer_count > 16 and dealer_count < 22:
         
@@ -79,8 +83,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                 print('Player has:\t ', count)
                 print('Dealer has:\t ', dealer_count)
                 print('Push')
-        #selected()
-                 
+        #----------------Do you wish to play again (y/n)? -------------------------         
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
             os.system('clear')
@@ -89,6 +92,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             return selected    
         else:
             quit()   
+        #--------------------------------------------------------------------------    
         
     while dealer_count<17 and toggle == False:
         print('Dealer has: ',dealer_count)
@@ -133,8 +137,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
 def ace_hand(player_hand, player_hand1):
     count = 0
     count_11=0
-    #dealer_count=0
-    #
+   
     dealer_count11=0    
     '''
     We need to count values when ace = 1 and ace = 11.
