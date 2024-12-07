@@ -1,5 +1,5 @@
 from random import choice
-from card import card_suit as cs
+from card import card_suit as cs                           # card determines suit  of card.
 from termcolor import colored
 from PIL import Image, ImageDraw, ImageFont
 import os, sys
@@ -9,9 +9,9 @@ with open('blackjack.txt', 'w+') as bj:
 #________________________________Global Variables_________________________________________________________
 
 play_count=0                                               # Deal 7 hands and then shuffle the deck. 
-count=0
-count_11 = 0    
-dealer_count=0
+count=0                                                    #
+count_11 = 0                                               # When Ace = 11
+dealer_count=0                                             
 dealer_count11=0
 bet=1
 balance=100
@@ -26,9 +26,9 @@ def shuffle():
     
     cards = [card for card in range(1,53)]
     while len(cards)!= 0:
-        selected=choice(cards)    # Selects a random card.
-        temp.append(selected)     # Append that card to temp. 
-        cards.remove(selected)    # Now remove the selected card from cards. 
+        selected=choice(cards)                              # Selects a random card.
+        temp.append(selected)                               # Append that card to temp. 
+        cards.remove(selected)                              # Now remove the selected card from cards. 
     global play_count
     play_count=0
 
@@ -58,7 +58,6 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
     global card
     toggle= False
     global status
-    #status = False
     
     if  dealer_count > 16 and dealer_count < 22:
         
@@ -85,7 +84,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                 print('Player has:\t ', count)
                 print('Dealer has:\t ', dealer_count)
                 print('Push')
-        #selected()
+        
                  
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
@@ -105,7 +104,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         #print('card',type(card),'dealer_count',type(dealer_count))
         dealer_count += card
         dealer_hit(count,count11,dealer_count,dealer_count11)
-        #print(dealer_count, count, count11,dealer_count11 )
+        
         if dealer_count > 21:
             print('Player has:\t ', count)
             print('dealer has:\t ',dealer_count)
@@ -137,16 +136,17 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
 
 
 def ace_hand(player_hand, player_hand1):
-    count = 0
-    count_11=0
-    #dealer_count=0
-    #
-    dealer_count11=0    
     '''
     We need to count values when ace = 1 and ace = 11.
     count_11 is when ace = 11 and count is when ace =1.
     
     '''
+    count = 0
+    count_11=0
+    #dealer_count=0
+    #
+    dealer_count11=0    
+    
     print('Either player_hand or player_hand1 is an ace.')
     if player_hand <8 and player_hand1<8 :
         #That means both cards are aces.
@@ -299,7 +299,7 @@ def deal():
                 
                 play = play.lower()
                 if play=='n':
-                    #toggle=False
+                    
                     sys.exit()
                 else:   
                     os.system('clear')  
