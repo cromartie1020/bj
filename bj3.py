@@ -3,6 +3,7 @@ from card import card_suit as cs                           # card determines sui
 from termcolor import colored
 from PIL import Image, ImageDraw, ImageFont
 import os, sys
+from yorn import select
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
 
@@ -85,8 +86,11 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                 print('Dealer has:\t ', dealer_count)
                 print('Push')
         
-                 
-        selected=input('Play again? Y/N ')
+        selected = select()  
+        if selected=='y':
+            deal()
+        '''    
+        #selected=input('Play again? Y/N ')
         if selected.lower()=='y':
             os.system('clear')
             deal()
@@ -94,7 +98,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             return selected    
         else:
             quit()   
-        
+        '''
     while dealer_count<17 and toggle == False:
         print('Dealer has: ',dealer_count)
         card   =choose_card()
@@ -110,8 +114,9 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             print('dealer has:\t ',dealer_count)
             print('Dealer is busted.')
 
-        selected =input( 'Do you wish to play again y/n: ')
-        selected = selected.lower()
+        #selected =input( 'Do you wish to play again y/n: ')
+        #selected = selected.lower()
+        selected = select()
         
         if selected == 'y':
             os.system('clear')  
@@ -204,8 +209,11 @@ def busted():
     
 def winner(player='player'):
     print('Player won')
-    #dealer_count+=1
-    deal()
+    selected=select()
+    if selected == 'y':
+        deal()
+    else:
+        quit()    
     
 def player():
     pass
@@ -295,8 +303,8 @@ def deal():
                 
                 print('busted')
                 print ("You've Lost.") 
-                play=input('Do you wish to play another hand y/n: ')
-                
+                #play=input('Do you wish to play another hand y/n: ')
+                play=select()
                 play = play.lower()
                 if play=='n':
                     
