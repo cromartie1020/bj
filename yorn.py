@@ -12,6 +12,7 @@ def select():
             quit()
             
         else:
+            
             selected = True
             
       
