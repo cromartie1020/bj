@@ -19,6 +19,7 @@ def myClick():
     #myLabel1=Label(root,text='This is a test' ,fg='blue',bg='red');
     myLabel1 = Label(root, text=e.get())
     myLabel1.grid(row=3,column=2)
+    
 myButton=Button(root, text='Click me!', padx=50, pady=20, command=myClick,fg='blue',bg='green')
 myButton.grid(row=2,column=2)
 
