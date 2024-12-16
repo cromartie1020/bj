@@ -207,16 +207,8 @@ class determine_card:
             self.card_number = 10
             
         return self.card_value, self.suit, self.card_number ,self.card_ace,self.card_ace1       
-print(suit)
-print(card_value)
-print(card_ace)
-    
 
 template=determine_card(card_value,suit, card_number,card_ace,card_ace1) 
-card_suit,card_value,card_ace,card_ace1=template.card_type()
+card_value,card_suit,card_number,card_ace,card_ace1=template.card_type()
     
 
-print(card_suit, card_value, card_ace)
-print(card_suit,type(card_suit))
-print(card_value, type(card_value))
-print(card_ace, type(card_ace))
