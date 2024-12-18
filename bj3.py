@@ -45,11 +45,11 @@ def choose_card():
         
     selected_card=temp.pop() # Take a card from the top of the deck.
     if len(temp)<25: 
-        #print('A new shuffle.')
+        
         temp.clear()              # Emptys the temp list. 
         shuffle()
     
-    card_type=cs[selected_card] # Lets determine the suit of the card.
+    card_type=cs[card_suit] # Lets determine the suit of the card.
     card_number=int(selected_card/4) + int(1)
     
     
