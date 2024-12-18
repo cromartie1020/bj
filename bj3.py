@@ -52,7 +52,7 @@ def choose_card():
         temp.clear()              # Emptys the temp list. 
         shuffle()
     
-    card_type=cs[card_suit] # Lets determine the suit of the card.
+    #card_type=cs[card_suit] # Lets determine the suit of the card.
     card_number=int(selected_card/4) + int(1)
     
     
