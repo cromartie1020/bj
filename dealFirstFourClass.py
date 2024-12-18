@@ -1,5 +1,4 @@
 from random import choice
-from card import suit,determine_card,card_value
 import sys,os
 temp=[]
 
@@ -20,7 +19,7 @@ class Shuffle:
         
     def clear(self):
         os.system('clear')
-    def random_cards(self):                      #This funtion returns a 52 card deck.
+    def random_cards(self):
         
         cards = [card for card in range(1,53)]
         
@@ -30,10 +29,18 @@ class Shuffle:
             cards.remove(selected)
             
         return temp    
+<<<<<<< HEAD
+    
+=======
     def first_four(self):
         pass     
         
+>>>>>>> 19bf3855160ec17ac7f095df3a15644c8f4445f8
 # testing the class    
 cards=Shuffle(temp)
 temp=cards.random_cards()
 print(temp)
+<<<<<<< HEAD
+
+=======
+>>>>>>> 19bf3855160ec17ac7f095df3a15644c8f4445f8
