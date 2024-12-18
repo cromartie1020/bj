@@ -29,9 +29,18 @@ class Shuffle:
             cards.remove(selected)
             
         return temp    
+<<<<<<< HEAD
     
+=======
+    def first_four(self):
+        pass     
+        
+>>>>>>> 19bf3855160ec17ac7f095df3a15644c8f4445f8
 # testing the class    
 cards=Shuffle(temp)
 temp=cards.random_cards()
 print(temp)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 19bf3855160ec17ac7f095df3a15644c8f4445f8
