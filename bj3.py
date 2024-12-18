@@ -2,6 +2,7 @@ from random import choice
 from card import card_suit as cs                           # card determines suit  of card.
 from termcolor import colored
 from PIL import Image, ImageDraw, ImageFont
+from dealFirstFourClass import Shuffle
 import os, sys
 from yorn import select
 with open('blackjack.txt', 'w+') as bj:
@@ -21,6 +22,8 @@ card_type = 0                                              #Is the card a heart,
 temp = []
 x = 0
 selected_card = 0
+
+
 #______________________________End of Global Variables_____________________________________________________
 def shuffle():
     os.system('clear')
