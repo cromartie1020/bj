@@ -15,5 +15,7 @@ def shuffle():
     return temp
 
 temp=shuffle()
+print(temp)
 card=temp.pop()
 print (card)
+print(temp)

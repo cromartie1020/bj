@@ -2,7 +2,7 @@ from random import choice
 from card import card_suit as cs                           # card determines suit  of card.
 from termcolor import colored
 from PIL import Image, ImageDraw, ImageFont
-#from dealFirstFourClass import Shuffle
+from dealFirstFourClass import Shuffle
 import os, sys
 from yorn import select
 with open('blackjack.txt', 'w+') as bj:
