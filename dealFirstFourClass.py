@@ -30,10 +30,34 @@ class Shuffle:
             cards.remove(selected)
             
         return temp    
-    def first_four(self):
-        pass     
+    def top_of_deck(self):                       #This function returns the top of the deck card.
+        pop_value = self.temp.pop()
+        return pop_value
+    
+    def four(self):                              # This function returns four cards from the top of the deck. 
+        four_cards=[]
+        four_cards.append(self.temp.pop())
+        four_cards.append(self.temp.pop())
+        four_cards.append(self.temp.pop())
+        four_cards.append(self.temp.pop())
+        
+        return four_cards
+    
+        
+        
+     
+         
         
 # testing the class    
 cards=Shuffle(temp)
 temp=cards.random_cards()
+print(temp)
+pop_value=cards.top_of_deck()
+print(pop_value)
+print(temp)
+pop_value=cards.top_of_deck()
+print(pop_value)
+print(temp)
+list_four=cards.four()
+print(list_four)
 print(temp)
