@@ -1,5 +1,5 @@
 from random import choice
-from card import suit as cs                           # card determines suit  of card.
+from card_class import determine_card, suit as cs                           # card determines suit  of card.
 from termcolor import colored
 from PIL import Image, ImageDraw, ImageFont
 from dealFirstFourClass import Shuffle, temp
@@ -38,7 +38,9 @@ def shuffle():
     play_count=0
 
     return temp
-temp=shuffle()
+new_card=Shuffle(temp)
+temp=new_card.random_cards()
+
 def choose_card():
     '''
     Selected card in order is heart, spade, diamond, club.
@@ -51,7 +53,7 @@ def choose_card():
     if len(temp)<25: 
         
         temp.clear()              # Emptys the temp list. 
-        shuffle()
+        Shuffle()
     
     #card_type=cs[card_suit] # Lets determine the suit of the card.
     card_number=int(selected_card/4) + int(1)
@@ -170,7 +172,7 @@ def ace_hand(player_hand, player_hand1):
 def hit(count, balance=0,bet=0, count_11=0):
     status = True
     if len(temp) < 25:
-        shuffle()
+        Shuffle()
     new_card  = temp.pop()
     
     #new_card = new_card 
@@ -227,8 +229,9 @@ def deal():
     play_count+=1
     
     if play_count==8:
-        
-        shuffle()
+       shuffle() 
+       #new_card=Shuffle(temp)
+       #temp=new_card.random_cards()
     deposit=100
     count_11=0
     dealer_count11=0

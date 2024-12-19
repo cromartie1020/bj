@@ -1,3 +1,6 @@
+from dealFirstFourClass import temp
+
+
 suit={1:'ACE HEARTS',2:'ACE SPADES',3:'ACE DIAMONDS',4:'ACE CLUBS',\
     5:'2 of HEARTS',6:'2 of SPADES', 7:'2 of DIAMONDS',8:'2 of CLUBS',\
     9:'3 of HEARTS',10:'3 of SPADES', 11:'3 of DIAMONDS',12:'3 of CLUBS',\
@@ -18,7 +21,7 @@ card_value=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20\
         40,41,42,43,44,45,46,47,48,49,50,51,52]
 
 
-card_value=card_value.pop()
+card_value=temp.pop()
 card_ace = 0
 card_number=0
 card_ace1=0

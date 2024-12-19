@@ -32,11 +32,9 @@ class Shuffle:
         return temp    
     
     def first_four(self):
+        for x in range (0,4):
+            four.append(temp.pop())
         
-        four.append(temp.pop())
-        four.append(temp.pop())
-        four.append(temp.pop())
-        four.append(temp.pop())
         return four
         
              
@@ -45,7 +43,6 @@ class Shuffle:
 cards=Shuffle(temp)
 cards.clear()
 temp=cards.random_cards()
-print(temp)
+
 four=cards.first_four()
-print(four)
 
