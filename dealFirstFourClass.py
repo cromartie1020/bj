@@ -1,6 +1,7 @@
 from random import choice
 import sys,os
 temp=[]
+four=[]
 
 class Shuffle:
 
@@ -31,11 +32,20 @@ class Shuffle:
         return temp    
     
     def first_four(self):
-        pass     
+        
+        four.append(temp.pop())
+        four.append(temp.pop())
+        four.append(temp.pop())
+        four.append(temp.pop())
+        return four
+        
+             
         
 # testing the class    
 cards=Shuffle(temp)
 cards.clear()
 temp=cards.random_cards()
 print(temp)
+four=cards.first_four()
+print(four)
 
