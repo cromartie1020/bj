@@ -1,8 +1,8 @@
 from random import choice
-from card import card_suit as cs                           # card determines suit  of card.
+from card import suit as cs                           # card determines suit  of card.
 from termcolor import colored
 from PIL import Image, ImageDraw, ImageFont
-from dealFirstFourClass import Shuffle
+from dealFirstFourClass import Shuffle, temp
 import os, sys
 from yorn import select
 with open('blackjack.txt', 'w+') as bj:
@@ -19,12 +19,13 @@ bet=1
 balance=100
 toggle = True
 card_type = 0                                              #Is the card a heart, spade, club, or diamond.
-temp = []
+#temp = []
 x = 0
 selected_card = 0
 
 
 #______________________________End of Global Variables_____________________________________________________
+
 def shuffle():
     os.system('clear')
     
@@ -63,7 +64,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
     toggle= False
     global status
     
-    if  dealer_count > 16 and dealer_count < 22:
+    if  dealer_count > 16 and dealer_count < 22:               # This means the dealer cannot hit again.
         
         if dealer_count > 21:
             os.system('clear')
@@ -92,19 +93,11 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         selected = select()  
         if selected=='y':
             deal()
-        '''    
-        #selected=input('Play again? Y/N ')
-        if selected.lower()=='y':
-            os.system('clear')
-            deal()
-            hand_count+=1
-            return selected    
-        else:
-            quit()   
-        '''
+            
+        
     while dealer_count<17 and toggle == False:
         print('Dealer has: ',dealer_count)
-        card   =choose_card()
+        card = choose_card()
         card = int(card[0])
         print('Dealer hit with:\t ', card)
         
@@ -117,8 +110,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             print('dealer has:\t ',dealer_count)
             print('Dealer is busted.')
 
-        #selected =input( 'Do you wish to play again y/n: ')
-        #selected = selected.lower()
+        
         selected = select()
         
         if selected == 'y':
@@ -327,7 +319,5 @@ def deal():
     return player_hand, dealer_hand, player_hand1, dealer_hand1
 
 while toggle: 
-    
-    
     deal()
 
