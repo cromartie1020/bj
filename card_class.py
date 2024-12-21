@@ -211,7 +211,8 @@ class determine_card:
             
         return self.card_value, self.suit, self.card_number ,self.card_ace,self.card_ace1       
 #----------------------Test class determne_card---------------------------
-template=determine_card(card_value,suit, card_number,card_ace,card_ace1) 
+#template=determine_card(card_value,suit, card_number,card_ace,card_ace1) 
+template=determine_card(card_value)
 card_value,card_suit,card_number,card_ace,card_ace1=template.card_type()
 print(card_value,card_suit, card_number, card_ace,card_ace1)   
     
