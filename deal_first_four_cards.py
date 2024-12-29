@@ -21,9 +21,11 @@ def shuffle():
 
     return temp
 temp=shuffle()
+print(temp)
 for x in range(0,4):
     hold = temp.pop()
     first_four_cards.append(hold)
 print(first_four_cards)
+#print(help(shuffle))
     
 
