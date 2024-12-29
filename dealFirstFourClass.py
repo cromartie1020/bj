@@ -6,9 +6,12 @@ play_count=0
 class Shuffle:
 
     '''
+    The calling function requires two list.
+    def __init__(self,temp,first_four)
+
     Shuffles the deck of 52 cards.
     Uses the imported random choice. 
-    first_four_cards variable holds the random
+    first_fourcleearf variable holds the random
     first 4 cards poped from deck of cards.
     Requires a random list of 52 cards and a list
     to hold four cards.
@@ -24,36 +27,34 @@ class Shuffle:
     def random_cards(self):
         
         cards = [card for card in range(1,53)]
-        while len(self.temp)!= 0:
-            selected=choice(temp)                              # Selects a random card.
-            cards.append(selected)                         # Now remove the selected card from cards. 
-            temp[selected].delete 
+        
+        while len(cards)!= 0:
+            selected=choice(cards)                              # Selects a random card.
+            temp.append(selected)
+            cards.remove(selected)                         # Now remove the selected card from cards. 
             
-        return cards
+            
+        return temp
     def four(self):
         
-        cards=[]
         for  x in range(0,4):
 
-            hold = temp.pop()
-            cards.append(hold)
-            if x == 3:
-                return first
+            selected = temp.pop()
+            first_four.append(selected)
+        return first_four    
             
-# Test the class            
+# Test the class   
+'''         
 first=Shuffle(temp, first_four)
-temp=first.random_cards()
-first_four = first.four()
-'''
-for x in range(0,4):
-    hold = temp.pop()
-    first_four.append(hold)
-'''
-print(Shuffle(help))
-print(help(Shuffle))
-print (temp)
-print(first_four)
 
+temp=first.random_cards()
+print ('temp:', temp)
+first_four = first.four()
+
+
+
+print(first_four)
+'''
 
 
 

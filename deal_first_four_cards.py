@@ -24,5 +24,6 @@ temp=shuffle()
 for x in range(0,4):
     hold = temp.pop()
     first_four_cards.append(hold)
+print(first_four_cards)
     
 
