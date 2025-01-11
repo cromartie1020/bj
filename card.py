@@ -1,3 +1,5 @@
+card_number = 0
+card_ace    = 0
 card_suit={1:'ACE HEARTS',2:'ACE SPADES',3:'ACE DIAMONDS',4:'ACE CLUBS',\
     5:'2 of HEARTS',6:'2 of SPADES', 7:'2 of DIAMONDS',8:'2 of CLUBS',\
     9:'3 of HEARTS',10:'3 of SPADES', 11:'3 of DIAMONDS',12:'3 of CLUBS',\
@@ -11,5 +13,36 @@ card_suit={1:'ACE HEARTS',2:'ACE SPADES',3:'ACE DIAMONDS',4:'ACE CLUBS',\
     41:'JACK of HEARTS',42:'JACK of SPADES', 43:'JACK of DIAMONDS',44:'JACK of CLUBS',\
     45:'QUEEN of HEARTS',46:'QUEEN of SPADES', 47:'QUEEN of DIAMONDS',48:'QUEEN of CLUBS',\
     49:'KING of HEARTS',50:'KING of SPADES', 51:'KING of DIAMONDS',52:'KING of CLUBS'                
-}        
+}   
+
+if card_suit>0 and card_suit < 5:
+    card_number = 1
+    card_ace    = 11
+if card_suit>4 and card_suit < 9:
+    card_number = 2
+if card_suit>8 and card_suit < 13:
+    card_number = 3
+if card_suit>12 and card_suit < 17:
+    card_number = 4
+if card_suit> 16 and card_suit < 21:
+    card_number = 5
+if card_suit>20 and card_suit < 25:
+    card_number = 6
+if card_suit>24 and card_suit < 29:
+    card_number = 7
+if card_suit>28 and card_suit < 33:
+    card_number = 8
+if card_suit>32 and card_suit < 37:
+    card_number = 9
+if card_suit>36 and card_suit < 53:
+    card_number = 10
+    
+    
+    
+        
+        
+    
+
+
+     
 

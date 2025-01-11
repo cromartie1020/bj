@@ -3,3 +3,4 @@ env/
 demo.py
 __pycache__/
 *.pyc
+__pycache__/card.cpython-311.pyc
