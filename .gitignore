@@ -2,5 +2,8 @@ env/
 .venv/
 demo.py
 __pycache__/
+<<<<<<< HEAD
 *.pyc
 __pycache__/card.cpython-311.pyc
+=======
+>>>>>>> mac_mini

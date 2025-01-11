@@ -1,11 +1,14 @@
 from random import choice
-from card import card_suit as cs
+from card_class import determine_card, suit as cs                           # card determines suit  of card.
 from termcolor import colored
 from PIL import Image, ImageDraw, ImageFont
+from dealFirstFourClass import Shuffle, temp
 import os, sys
+from yorn import select
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
 
+<<<<<<< HEAD
 play_count=0
 count=0           # Total of the player's card in there hand.
 count_11 = 0    
@@ -16,18 +19,41 @@ balance=100
 toggle = True # This determines if another hand is played.  
 card_type = 0 # Is the card a heart, spade, club, or diamond.
 temp = []     # This holds the card deck
+=======
+#________________________________Global Variables_________________________________________________________
+
+play_count=0                                               # Deal 7 hands and then shuffle the deck. 
+count=0                                                    #
+count_11 = 0                                               # When Ace = 11
+dealer_count=0                                             
+dealer_count11=0
+bet=1
+balance=100
+toggle = True
+card_type = 0                                              #Is the card a heart, spade, club, or diamond.
+#temp = []
+>>>>>>> mac_mini
 x = 0
 selected_card = 0
+
+
+#______________________________End of Global Variables_____________________________________________________
+
 def shuffle():
     os.system('clear')
     
     cards = [card for card in range(1,53)]
     while len(cards)!= 0:
-        selected=choice(cards)    # Selects a random card.
-        temp.append(selected)     # Append that card to temp. 
-        cards.remove(selected)    # Now remove the selected card from cards. 
+        selected=choice(cards)                              # Selects a random card.
+        temp.append(selected)                               # Append that card to temp. 
+        cards.remove(selected)                              # Now remove the selected card from cards. 
+    global play_count
+    play_count=0
+
     return temp
-temp=shuffle()
+new_card=Shuffle(temp)
+temp=new_card.random_cards()
+
 def choose_card():
     '''
     Selected card in order is heart, spade, diamond, club.
@@ -38,11 +64,11 @@ def choose_card():
         
     selected_card=temp.pop() # Take a card from the top of the deck.
     if len(temp)<25: 
-        #print('A new shuffle.')
+        
         temp.clear()              # Emptys the temp list. 
-        shuffle()
+        Shuffle()
     
-    card_type=cs[selected_card] # Lets determine the suit of the card.
+    #card_type=cs[card_suit] # Lets determine the suit of the card.
     card_number=int(selected_card/4) + int(1)
     
     
@@ -56,9 +82,12 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
     global card
     toggle= False
     global status
+<<<<<<< HEAD
     
+=======
+>>>>>>> mac_mini
     
-    if  dealer_count > 16 and dealer_count < 22:
+    if  dealer_count > 16 and dealer_count < 22:               # This means the dealer cannot hit again.
         
         if dealer_count > 21:
             os.system('clear')
@@ -83,6 +112,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                 print('Player has:\t ', count)
                 print('Dealer has:\t ', dealer_count)
                 print('Push')
+<<<<<<< HEAD
         #----------------Do you wish to play again (y/n)? -------------------------         
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
@@ -93,24 +123,35 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         else:
             quit()   
         #--------------------------------------------------------------------------    
+=======
+        
+        selected = select()  
+        if selected=='y':
+            deal()
+            
+>>>>>>> mac_mini
         
     while dealer_count<17 and toggle == False:
         print('Dealer has: ',dealer_count)
-        card   =choose_card()
+<<<<<<< HEAD
+        card = choose_card()
+=======
+        card   =choose_card()                                                   # Function located on line 38
+>>>>>>> c9908b226898ad94f7a2202e82f8ad96fea984f4
         card = int(card[0])
         print('Dealer hit with:\t ', card)
         
         #print('card',type(card),'dealer_count',type(dealer_count))
         dealer_count += card
         dealer_hit(count,count11,dealer_count,dealer_count11)
-        #print(dealer_count, count, count11,dealer_count11 )
+        
         if dealer_count > 21:
             print('Player has:\t ', count)
             print('dealer has:\t ',dealer_count)
             print('Dealer is busted.')
 
-        selected =input( 'Do you wish to play again y/n: ')
-        selected = selected.lower()
+        
+        selected = select()
         
         if selected == 'y':
             os.system('clear')  
@@ -135,15 +176,24 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
 
 
 def ace_hand(player_hand, player_hand1):
+<<<<<<< HEAD
     count = 0
     count_11=0
    
     dealer_count11=0    
+=======
+>>>>>>> mac_mini
     '''
     We need to count values when ace = 1 and ace = 11.
     count_11 is when ace = 11 and count is when ace =1.
     
     '''
+    count = 0
+    count_11=0
+    #dealer_count=0
+    #
+    dealer_count11=0    
+    
     print('Either player_hand or player_hand1 is an ace.')
     if player_hand <8 and player_hand1<8 :
         #That means both cards are aces.
@@ -167,7 +217,7 @@ def ace_hand(player_hand, player_hand1):
 def hit(count, balance=0,bet=0, count_11=0):
     status = True
     if len(temp) < 25:
-        shuffle()
+        Shuffle()
     new_card  = temp.pop()
     
     #new_card = new_card 
@@ -201,8 +251,11 @@ def busted():
     
 def winner(player='player'):
     print('Player won')
-    #dealer_count+=1
-    deal()
+    selected=select()
+    if selected == 'y':
+        deal()
+    else:
+        quit()    
     
 def player():
     pass
@@ -217,6 +270,13 @@ def deal():
     if he/she has blackjack.
     '''
     # ----------------The first four cards------------------
+    global play_count
+    play_count+=1
+    
+    if play_count==8:
+       shuffle() 
+       #new_card=Shuffle(temp)
+       #temp=new_card.random_cards()
     deposit=100
     count_11=0
     dealer_count11=0
@@ -248,11 +308,17 @@ def deal():
     print('Player first card:  ', player_hand, end='')
     print('\t\t\tDealer first card:  ', dealer_hand)
     print('Player second card: ', player_hand1, end='')
+<<<<<<< HEAD
     
     print('\t\t\tDealer second card: ', dealer_hand1)
     print('Player has:         ' , player_hand + player_hand1,end='')
     print('\t\t\tDealer has:         ', dealer_hand + dealer_hand1)
     
+=======
+    print('\t\t\tDealer second card: ', dealer_hand1)
+    print('Player has:         ',player_hand +player_hand1,end='')
+    print('\t\t\tDealer has:         ',dealer_hand +dealer_hand1)
+>>>>>>> mac_mini
     
     #print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
     if count_11 == 21 and dealer_count11 !=21:
@@ -288,11 +354,11 @@ def deal():
                 
                 print('busted')
                 print ("You've Lost.") 
-                play=input('Do you wish to play another hand y/n: ')
-                
+                #play=input('Do you wish to play another hand y/n: ')
+                play=select()
                 play = play.lower()
                 if play=='n':
-                    #toggle=False
+                    
                     sys.exit()
                 else:   
                     os.system('clear')  
@@ -309,7 +375,5 @@ def deal():
     return player_hand, dealer_hand, player_hand1, dealer_hand1
 
 while toggle: 
-    
-    
     deal()
 
