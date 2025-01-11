@@ -8,7 +8,6 @@ from yorn import select
 with open('blackjack.txt', 'w+') as bj:
     config=bj.readlines()
 
-<<<<<<< HEAD
 play_count=0
 count=0           # Total of the player's card in there hand.
 count_11 = 0    
@@ -19,7 +18,6 @@ balance=100
 toggle = True # This determines if another hand is played.  
 card_type = 0 # Is the card a heart, spade, club, or diamond.
 temp = []     # This holds the card deck
-=======
 #________________________________Global Variables_________________________________________________________
 
 play_count=0                                               # Deal 7 hands and then shuffle the deck. 
@@ -32,7 +30,6 @@ balance=100
 toggle = True
 card_type = 0                                              #Is the card a heart, spade, club, or diamond.
 #temp = []
->>>>>>> mac_mini
 x = 0
 selected_card = 0
 
@@ -82,10 +79,6 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
     global card
     toggle= False
     global status
-<<<<<<< HEAD
-    
-=======
->>>>>>> mac_mini
     
     if  dealer_count > 16 and dealer_count < 22:               # This means the dealer cannot hit again.
         
@@ -112,7 +105,6 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
                 print('Player has:\t ', count)
                 print('Dealer has:\t ', dealer_count)
                 print('Push')
-<<<<<<< HEAD
         #----------------Do you wish to play again (y/n)? -------------------------         
         selected=input('Play again? Y/N ')
         if selected.lower()=='y':
@@ -122,22 +114,16 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
             return selected    
         else:
             quit()   
-        #--------------------------------------------------------------------------    
-=======
         
         selected = select()  
         if selected=='y':
             deal()
             
->>>>>>> mac_mini
         
     while dealer_count<17 and toggle == False:
         print('Dealer has: ',dealer_count)
-<<<<<<< HEAD
         card = choose_card()
-=======
         card   =choose_card()                                                   # Function located on line 38
->>>>>>> c9908b226898ad94f7a2202e82f8ad96fea984f4
         card = int(card[0])
         print('Dealer hit with:\t ', card)
         
@@ -176,13 +162,10 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
 
 
 def ace_hand(player_hand, player_hand1):
-<<<<<<< HEAD
     count = 0
     count_11=0
    
     dealer_count11=0    
-=======
->>>>>>> mac_mini
     '''
     We need to count values when ace = 1 and ace = 11.
     count_11 is when ace = 11 and count is when ace =1.
@@ -308,17 +291,14 @@ def deal():
     print('Player first card:  ', player_hand, end='')
     print('\t\t\tDealer first card:  ', dealer_hand)
     print('Player second card: ', player_hand1, end='')
-<<<<<<< HEAD
     
     print('\t\t\tDealer second card: ', dealer_hand1)
     print('Player has:         ' , player_hand + player_hand1,end='')
     print('\t\t\tDealer has:         ', dealer_hand + dealer_hand1)
     
-=======
     print('\t\t\tDealer second card: ', dealer_hand1)
     print('Player has:         ',player_hand +player_hand1,end='')
     print('\t\t\tDealer has:         ',dealer_hand +dealer_hand1)
->>>>>>> mac_mini
     
     #print('player_count : ',count,'player_count_11: ',count_11, 'dealer_count: ',dealer_count, 'dealer_count11: ',dealer_count11)
     if count_11 == 21 and dealer_count11 !=21:
