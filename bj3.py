@@ -101,7 +101,7 @@ def dealer_hit(count, count11,dealer_count,dealer_count11):
         '''
     while dealer_count<17 and toggle == False:
         print('Dealer has: ',dealer_count)
-        card   =choose_card()
+        card   =choose_card()                                                   # Function located on line 38
         card = int(card[0])
         print('Dealer hit with:\t ', card)
         
